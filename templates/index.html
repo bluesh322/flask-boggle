@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/app.css">
+    <title>{% block title %}Boggle{% endblock %}</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="">
+                <h1 class="display-1">Boggle Game!</h1>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h3>Timer:</h3>
+            <h3 class="timer"></h3>
+        </div>
+        <div class="d-flex justify-content-around">
+            <h3>Highscore: {{highscore}} </h3>
+            <h3>Plays: {{nplays}}</h3>
+        </div>
+        {% block Content %}
+        <div class="d-flex justify-content-center">
+            <div class="">
+                <table class="form-table m-3" id="board">
+                    {% for row in board %}
+                    <tr>
+                        {% for x in row %}
+                        <td>
+                            {{x}}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="">
+                <form method="POST" class="form-inline" id="submit-word">
+                    <div class="form-group my-sm-2">
+                        <label for="word">Submit a word: </label>
+                        <input placeholder="5 letters max" type="text" class="form-control mx-1" name="word"
+                            id="newWord" required>
+                        <button class="btn btn-primary mx-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+
+        <div class="msg">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h3>Valid Words</h3>
+                    <ul class="validWords">
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <h3 >Score: <span class="score"></span></h3>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/boggle.js"></script>
+</body>
+
+</html>
